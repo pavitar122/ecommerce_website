@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}Contact{% endblock title %}
+
+
+{% block hero %}
+<!-- ======= Hero Section ======= -->
+<section id="heroco" class="d-flex align-items-center"></section>
+
+{% endblock hero %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="card" >
+                <div class="card-body">
+                    <form action="" method="post">
+                        {% csrf_token %}
+
+                        <label for="name">Full name</label>
+                        <div class="form-group">
+                            <input type="text"  class="form-control p-2" id="name" name="name" required />
+                        </div>
+                        <label for="email">Email</label>
+                        <div class="form-group">
+                            <input type="email" class="form-control p-2" id="email" name="email" required />
+                        </div>
+                        <label for="desc">How can i help you?</label>
+                        <div class="form-group">
+                            <textarea cols="1" type="text" class="form-control p-2" id="desc" name="desc"
+                                required></textarea>
+                        </div>
+                        <label for="phone">Phone no</label>
+                        <div class="form-group">
+                            <input type="number" class="form-control p-2" id="phone" name="phone" required />
+                        </div>
+                        <br />
+                        <button type="submit" class="btn btn-dark">Submit</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+
+
+{% endblock body %}
+
+{% block footer %}
+<div class=" footer-bottom-ab">
+ 
+</div>
+{% endblock footer %}

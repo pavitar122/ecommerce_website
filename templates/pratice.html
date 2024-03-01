@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart Example</title>
+</head>
+<body>
+  <h2>Shopping Cart</h2>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody id="cartTableBody"></tbody>
+  </table>
+  <p>Total Amount: $<span id="totalAmount"></span></p>
+
+  <script>
+    // Function to retrieve cart data from local storage
+    function getCartData() {
+      const cartData = localStorage.getItem('cart');
+      return cartData ? JSON.parse(cartData) : [];
+    }
+
+    // Function to display cart data in the table
+    function displayCartData() {
+      const cartTableBody = document.getElementById('cartTableBody');
+      const totalAmountElement = document.getElementById('totalAmount');
+
+      // Get cart data from local storage
+      const cartItems = getCartData();
+
+      // Initialize total amount
+      let totalAmount = 0;
+
+      // Clear existing table rows
+      cartTableBody.innerHTML = '';
+
+      // Loop through cart items and display in the table
+      cartItems.forEach(item => {
+        const { name, price, quantity } = item;
+        const total = price * quantity;
+
+        // Update total amount
+        totalAmount += total;
+
+        // Create a table row
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${name}</td>
+          <td>$${price}</td>
+          <td>${quantity}</td>
+          <td>$${total.toFixed(2)}</td>
+        `;
+
+        // Append the row to the table
+        cartTableBody.appendChild(row);
+      });
+
+      // Display total amount
+      totalAmountElement.textContent = totalAmount.toFixed(2);
+    }
+
+    // Call the function to display cart data on page load
+    window.onload = displayCartData;
+  </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Cart{% endblock title %}
+
+
+{% block hero %}
+
+<section id="heroco" class="d-flex align-items-center"></section>
+
+{% endblock hero %}
+
+{% block body %}
+<div class="container checkout">
+    <div class="row">
+        <div class="col-md-8">
+            <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+                <tbody id="cartTableBody"></tbody>
+              </table>
+              <p class="last">Total Amount: <span id="totalAmount"></span></p>
+              <button id="clearCartButton" class="btn btn-danger">Clear Cart</button>
+              {% if request.user.is_authenticated %}
+              <button id="payment" class="btn btn-success"><a style="color: aliceblue;" href="/checkout">checkout</a></button>
+              {% else %}
+              <button id="payment" class="btn btn-success"><a style="color: aliceblue;" href="/auth/login">Login</a></button>
+              {% endif%}
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
+
+
+<script src="/static/assets/js/cart.js"></script>
+{% endblock body %}
+
+
+{% block footer %}
+<div class=" footer-bottom-ab">
+ 
+</div>
+{% endblock footer %}

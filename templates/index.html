@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock title %}
+
+
+
+{% block hero %}
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex align-items-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up"
+        data-aos-delay="200">
+        <h1>Better Solutions For Your Business</h1>
+        <h2>
+          We are team of talented designers making websites with Bootstrap
+        </h2>
+        <div class="d-flex justify-content-center justify-content-lg-start">
+          <a href="#about" class="btn-get-started scrollto">Get Started</a>
+          <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox btn-watch-video"><i
+              class="bi bi-play-circle"></i><span>Watch Video</span></a>
+        </div>
+      </div>
+      <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
+        <img src="/static/assets/img/hero-img.png" class="img-fluid animated" alt="" />
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Hero -->
+{% endblock hero %}
+
+{% block body %}
+<section id="portfolio" class="portfolio">
+  {% comment %} <h2 id="head" class="heading">Welcome to sale.</h2> {% endcomment %}
+
+
+  <div id="category1" class="category container">
+    <div class="row">
+      <h3 class="p-2 text-center text-secondary bg-light">Watch Flashsale</h3>
+      {% for product in category1_products %}
+      <div class="col-md-2 body">
+        <div class="product" data-id="{{ product.id }}" data-price="{{product.price}}"
+          data-name="{{product.product_name}}">
+          <img class="card-img-top" src="/media/{{product.image}}" alt="Card image cap">
+          <h3>{{ product.product_name }}</h3>
+          <p>Price: {{ product.price }}</p>
+          <button class="add-to-cart btn btn-secondary btn-sm">Add to Cart</button>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+
+
+  <div id="category2" class="category container">
+    <div class="row">
+      <h3 class="p-2 text-center text-secondary bg-light">Glass Flashsale</h3>
+      {% for product in category2_products %}
+      <div class="col-md-2 body">
+        <div class="product" data-id="{{ product.id }}" data-price="{{product.price}}"
+          data-name="{{product.product_name}}">
+          <img class="card-img-top" style="height: 200px;" src="/media/{{product.image}}" alt="Card image cap">
+          <h3>{{ product.product_name }}</h3>
+          <p>Price: {{ product.price }}</p>
+          <button class="add-to-cart btn btn-secondary btn-sm">Add to Cart</button>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+
+
+  <p style="visibility: hidden;">Total Quantity in Cart: <span id="total-quantity">0</span></p>
+</section>
+<!-- End Portfolio Section -->
+
+<script src="/static/assets/js/index.js"></script>
+ 
+{% endblock body %}
+
+{% block footer %}
+<div class=" footer-bottom">
+  
+</div>
+{% endblock footer %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="portfolio" class="portfolio">
+  <h2 id="head" class="heading">Welcome to sale.</h2>
+
+  {% for product, range, nSlides in allProds %}
+  <div class="container">
+    <div class="row">
+
+      <h3 class="p-2 text-center text-secondary bg-light">
+        {{product.0.category}} Flashsale
+      </h3>
+
+      {% for i in product %}
+      <div class="col-md-2">
+
+        <div class="card-group" style="width: 15rem;">
+          <img class="card-img-top" style="height: 200px;" src="/media/{{i.image}}" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title" id="namepr{{i.id}}">{{i.product_name}}</h5>
+            <p class="card-text" style="margin: 2px;">{{i.desc|slice:"0:53"}}</p>
+            <p class="card-text" style="margin: 2px;" id="pricepr{{i.id}}">Price: {{i.price}}</p>
+            <span id="divpr{{i.id}}" class="divpr">
+              <button id="pr{{i.id}}" class="btn btn-secondary btn-sm bttnpr">Add to cart
+                <i class="fa-solid fa-cart-shopping"></i>
+              </button>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      {% endfor %}
+    </div>
+  </div>
+  {% endfor %}
+
+</section>
+<!-- End Portfolio Section -->

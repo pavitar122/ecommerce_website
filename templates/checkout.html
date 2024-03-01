@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block title %}Checkout{% endblock title %}
+
+
+{% block hero %}
+
+<section id="heroco" class="d-flex align-items-center"></section>
+
+{% endblock hero %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <form action="" method="post">
+                        {% csrf_token %}
+
+                        <label for="name">Full name</label>
+                        <div class="form-group">
+                            <input type="text" value="{{request.user}}" class="form-control p-2" id="name" name="name"
+                                required />
+                        </div>
+                        <label for="phone">Phone no</label>
+                        <div class="form-group">
+                            <input type="number" class="form-control p-2" maxlength="10" id="phone" name="phone"
+                                required />
+                        </div>
+                        <label for="address">Address</label>
+                        <div class="form-group">
+                            <textarea cols="1" type="text" class="form-control p-2" id="address" name="address"
+                                required></textarea>
+                        </div>
+                        <label for="pin">Postal pin</label>
+                        <div class="form-group">
+                            <input type="number" maxlength="6" class="form-control p-2" id="pin" name="pin" required />
+                        </div>
+
+                        <label for="email">Email</label>
+                        <div class="form-group">
+                            <input type="email" value="{{request.user.email}}" class="form-control p-2" id="email"
+                                name="email" required />
+                        </div>
+                        <input type="hidden" name="itemsJson" id="itemsJson">
+                        <br />
+                        <button type="submit" id="payment" class="btn btn-dark">Make Payment</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        function getCartData() {
+            const cartData = localStorage.getItem('cart');
+            return cartData ? JSON.parse(cartData) : [];
+        }
+        var cartItems = getCartData();
+        console.log(cartItems)
+        const input = document.getElementById('itemsJson');
+        input.value = JSON.stringify(cartItems)
+
+        function clear() {
+            localStorage.removeItem('cart');
+            alert("Your order has been placed.")
+        }
+        document.getElementById('payment').addEventListener('click', clear);
+
+    });
+
+</script>
+
+
+{% endblock body %}
+
+{% block footer %}
+<div class=" footer-bottom-ab"></div>
+{% endblock footer %}
