@@ -8,8 +8,8 @@ import json
 
 def index(request):
     all_products = Product.objects.all()
-    category1_products = all_products.filter(category='Watch')
-    category2_products = all_products.filter(category='Glass')
+    category1_products = all_products.filter(category='Product 1')
+    category2_products = all_products.filter(category='Product 2')
 
 
     return render(request, "index.html",  
